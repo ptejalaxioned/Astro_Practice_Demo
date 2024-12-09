@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SaleCountdown from './SaleCountdown';
 import Image1 from '../assets/images/shop0.jpg';
 import Image2 from '../assets/images/shop1.jpg';
@@ -9,8 +9,59 @@ import Image6 from '../assets/images/shop5.jpg';
 import Image7 from '../assets/images/shop6.jpg';
 import Image8 from '../assets/images/shop7.jpg';
 
-// sale-countdown section end
 export default function ShopSection() {
+  // Initial items data
+  const initialItems = [
+    { id: 1, name: 'Smart Watch', price: 46, img: Image1 },
+    { id: 2, name: 'Fitness Tracker', price: 25, img: Image2 },
+    { id: 3, name: 'Air Pods', price: 76, img: Image3 },
+    { id: 4, name: 'Phone', price: 55, img: Image4 },
+    { id: 5, name: 'Notebook', price: 23, img: Image5 },
+    { id: 6, name: 'Mouse', price: 98, img: Image6 },
+    { id: 7, name: 'Media Player', price: 22, img: Image7 },
+    { id: 8, name: 'Red Cap', price: 55, img: Image8 },
+  ];
+
+  // States for sorting, filtering, and price range
+  const [items, setItems] = useState(initialItems);
+  const [minPrice, setMinPrice] = useState(22);
+  const [maxPrice, setMaxPrice] = useState(98);
+
+  // Sorting functions
+  const sortByPriceLowToHigh = () => {
+    const sortedItems = [...items].sort((a, b) => a.price - b.price);
+    setItems(sortedItems);
+  };
+
+  const sortByPriceHighToLow = () => {
+    const sortedItems = [...items].sort((a, b) => b.price - a.price);
+    setItems(sortedItems);
+  };
+
+  const revertToDefaultOrder = () => {
+    setItems(initialItems);
+  };
+
+  // Filtering function based on price range
+  const filterItemsByPrice = () => {
+    const filteredItems = initialItems.filter(
+      (item) => item.price >= minPrice && item.price <= maxPrice
+    );
+    setItems(filteredItems);
+  };
+
+  // Show all items
+  const showAllItems = () => {
+    setItems(initialItems);
+  };
+
+  // Handle range input changes
+  const handleRangeChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'min') setMinPrice(parseInt(value));
+    if (name === 'max') setMaxPrice(parseInt(value));
+  };
+
   return (
     <>
       <section className="sale-countdown">
@@ -20,21 +71,21 @@ export default function ShopSection() {
             <div className="sort-buttons">
               <a
                 href="#FIXME"
-                className="button sort-button default-sort"
+                class="button sort-button default-sort"
                 target="_self"
                 title="Default Sorting">
                 default sorting
               </a>
               <a
                 href="#FIXME"
-                className="button sort-button sort-low-high"
+                class="button sort-button sort-low-high"
                 target="_self"
                 title="Price Low To High">
                 price: low to high
               </a>
               <a
                 href="#FIXME"
-                className="button sort-button sort-high-low"
+                class="button sort-button sort-high-low"
                 target="_self"
                 title="Price High To Low">
                 price: high to low
@@ -43,103 +94,56 @@ export default function ShopSection() {
             <div className="filter-range">
               <div className="filter-range-left">
                 <ul className="item-list">
-                  <li className="items">
-                    <figure>
-                      <img src={Image1.src} alt="Smart Watch" />
-                    </figure>
-                    <span className="item-name">smart watch</span>
-                    <span className="item-price">$46</span>
-                  </li>
-                  <li className="items">
-                    <figure>
-                      <img src={Image2.src} alt="Fitness Watch" />
-                    </figure>
-                    <span className="item-name">fitness tracker</span>
-                    <span className="item-price">$25</span>
-                  </li>
-                  <li className="items">
-                    <figure>
-                      <img src={Image3.src} alt="Air Pods" />
-                    </figure>
-                    <span className="item-name">air pods</span>
-                    <span className="item-price">$76</span>
-                  </li>
-                  <li className="items">
-                    <figure>
-                      <img src={Image4.src} alt="Phone" />
-                    </figure>
-                    <span className="item-name">phone</span>
-                    <span className="item-price">$55</span>
-                  </li>
-                  <li className="items">
-                    <figure>
-                      <img src={Image5.src} alt="Notebook" />
-                    </figure>
-                    <span className="item-name">notebook</span>
-                    <span className="item-price">$23</span>
-                  </li>
-                  <li className="items">
-                    <figure>
-                      <img src={Image6.src} alt="Mouse" />
-                    </figure>
-                    <span className="item-name">mouse</span>
-                    <span className="item-price">$98</span>
-                  </li>
-                  <li className="items">
-                    <figure>
-                      <img src={Image7.src} alt="Media Player" />
-                    </figure>
-                    <span className="item-name">media player</span>
-                    <span className="item-price">$22</span>
-                  </li>
-                  <li className="items">
-                    <figure>
-                      <img src={Image8.src} alt="Red Cap" />
-                    </figure>
-                    <span className="item-name">red cap</span>
-                    <span className="item-price">$55</span>
-                  </li>
+                  {items.map((item) => (
+                    <li key={item.id} className="items">
+                      <figure>
+                        <img src={item.img.src} alt={item.name} />
+                      </figure>
+                      <span className="item-name">{item.name}</span>
+                      <span className="item-price">${item.price}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="filter-range-right">
                 <h5 className="first-letter-caps range-heading">
-                  best sellers
+                  Best Sellers
                 </h5>
                 <div className="price-range">
                   <h5 className="first-letter-caps range-heading">
-                    price range
+                    Price Range
                   </h5>
-                  <ul className="low-high">
-                    <li className="low">22</li>
-                    <li className="high">98</li>
+                  <ul class="low-high">
+                    <li class="low">22</li>
+                    <li class="high">98</li>
                   </ul>
-                  <div className="range">
+                  <div class="range">
                     <input
                       type="range"
                       min="22"
                       max="98"
                       value="22"
-                      className="min input"
+                      class="min input"
                     />
                     <input
                       type="range"
                       min="22"
                       max="98"
                       value="98"
-                      className="max input"
+                      class="max input"
                     />
                   </div>
                   <div className="range-buttons">
                     <a
                       href="#FIXME"
-                      className="button orange-button single-letter-caps click-filter"
+                      class="button orange-button single-letter-caps click-filter"
                       target="_self"
                       title="Filter">
                       filter
                     </a>
                     <a
                       href="#FIXME"
-                      className="button blue-button single-letter-caps show-all"
+                      class="button blue-button single-letter-caps show-all"
                       target="_self"
                       title="Show All">
                       show all
@@ -147,12 +151,12 @@ export default function ShopSection() {
                   </div>
                 </div>
                 <div className="filter">
-                  <h5 className="first-letter-caps range-heading">filter</h5>
-                  <ul className="filter-list">
+                  <h5 className="first-letter-caps range-heading">Filter</h5>
+                  <ul class="filter-list">
                     <li>
                       <a
                         href="#FIXME"
-                        className="single-letter-caps all"
+                        class="single-letter-caps all"
                         target="_self"
                         title="All">
                         all
@@ -161,7 +165,7 @@ export default function ShopSection() {
                     <li>
                       <a
                         href="#FIXME"
-                        className="single-letter-caps awesome"
+                        class="single-letter-caps awesome"
                         target="_self"
                         title="Awesome">
                         awesome
@@ -170,7 +174,7 @@ export default function ShopSection() {
                     <li>
                       <a
                         href="#FIXME"
-                        className="single-letter-caps wonderful"
+                        class="single-letter-caps wonderful"
                         target="_self"
                         title="Wonderful">
                         wonderful
@@ -179,7 +183,7 @@ export default function ShopSection() {
                     <li>
                       <a
                         href="#FIXME"
-                        className="single-letter-caps creative"
+                        class="single-letter-caps creative"
                         target="_self"
                         title="Creative">
                         creative
@@ -188,7 +192,7 @@ export default function ShopSection() {
                     <li>
                       <a
                         href="#FIXME"
-                        className="single-letter-caps responsive"
+                        class="single-letter-caps responsive"
                         target="_self"
                         title="Responsive">
                         responsive
@@ -197,7 +201,7 @@ export default function ShopSection() {
                     <li>
                       <a
                         href="#FIXME"
-                        className="single-letter-caps animated"
+                        class="single-letter-caps animated"
                         target="_self"
                         title="Animated">
                         animated
@@ -213,4 +217,3 @@ export default function ShopSection() {
     </>
   );
 }
-//sale-countdown section end
