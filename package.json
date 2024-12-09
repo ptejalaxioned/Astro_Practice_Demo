@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "astro_practice",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,6 +9,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.0.2"
-  }
+    "@astrojs/react": "^4.0.0",
+    "@astrojs/vue": "^5.0.1",
+    "astro": "^5.0.3"
+  },
+  "description": "```sh npm create astro@latest -- --template basics ```",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
