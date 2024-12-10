@@ -18,7 +18,7 @@ export default function ReactSection() {
               <ul className="nav-list">
                 <li>
                   <a
-                    href="/https://github.com/ptejalaxioned/Astro_Project_Demo.git/"
+                    href="/Astro_Project_Demo.git/"
                     title="Home"
                     className="all-caps home nav-menu"
                     target="_self">
@@ -27,7 +27,7 @@ export default function ReactSection() {
                 </li>
                 <li>
                   <a
-                    href="/https://github.com/ptejalaxioned/Astro_Project_Demo.git/features"
+                    href="/Astro_Project_Demo.git/features"
                     title="Features"
                     className="all-caps features nav-menu"
                     target="_self">
@@ -36,7 +36,7 @@ export default function ReactSection() {
                 </li>
                 <li>
                   <a
-                    href="/https://github.com/ptejalaxioned/Astro_Project_Demo.git/blogs"
+                    href="/Astro_Project_Demo.git/blogs"
                     title="Blogs"
                     className="all-caps blogs nav-menu"
                     target="_self">
@@ -45,7 +45,7 @@ export default function ReactSection() {
                 </li>
                 <li>
                   <a
-                    href="/https://github.com/ptejalaxioned/Astro_Project_Demo.git/shop"
+                    href="/Astro_Project_Demo.git/shop"
                     title="Shop"
                     className="all-caps shop nav-menu"
                     target="_self">
@@ -54,7 +54,7 @@ export default function ReactSection() {
                 </li>
                 <li className="demo-list">
                   <a
-                    href="/https://github.com/ptejalaxioned/Astro_Project_Demo.git/demos"
+                    href="/Astro_Project_Demo.git/demos"
                     title="Demos"
                     className="all-caps demos nav-menu"
                     target="_self">
