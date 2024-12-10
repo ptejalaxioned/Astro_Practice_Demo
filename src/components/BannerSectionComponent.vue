@@ -13,7 +13,7 @@
             target="_self"
             class="first-letter-caps"
           >
-            gadget sites
+            gggdget sites
           </a>
         </h1>
         <p class="first-letter-caps">website design template</p>
