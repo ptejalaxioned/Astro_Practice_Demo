@@ -1,6 +1,7 @@
 ---
 import HeaderSection from '../components/HeaderSection';
 import FooterSection from '../components/FooterSection';
+import Css from './public/style.css';
 ---
 
 <!doctype html>
@@ -11,7 +12,7 @@ import FooterSection from '../components/FooterSection';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Astro Basics</title>
-    <link rel="stylesheet" media="screen" href="/public/style.css" />
+    <link rel="stylesheet" media="screen" href={Css} />
     <script
       src="https://kit.fontawesome.com/5edb8394fa.js"
       crossorigin="anonymous"></script>
